@@ -65,8 +65,6 @@ int main(void)
 	VAO.SetVertexBuffer(VBO, 2);
 	VAO.Unbind();
 
-	float redChannel = 1.0f;
-
 	Renderer renderer;
 
 	// RENDER LOOP
@@ -86,7 +84,7 @@ int main(void)
 			shader.setMat4("model", model);
 			shader.setMat4("view", view);
 
-			shader.setFloat("u_Color", redChannel);
+			shader.setVec3("u_Color", glm::vec3(0.0, 0.0, 1.0));
 
 			renderer.draw(shader, VAO, IBO);
 		}
@@ -102,7 +100,7 @@ int main(void)
 			shader.setMat4("model", model);
 			shader.setMat4("view", view);
 
-			shader.setFloat("u_Color", redChannel);
+			shader.setVec3("u_Color", glm::vec3(1.0, 0.0, 0.0));
 
 			renderer.draw(shader, VAO, IBO);
 
