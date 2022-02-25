@@ -74,32 +74,39 @@ int main(void)
 	{
 		processInput(window);
 		
-		shader.use();
 
-		// TRANSFORMATION MATRICES
-		/*glm::mat4 model = glm::mat4(1.0f);
-		glm::mat4 view = glm::mat4(1.0f);
-		glm::mat4 projection = glm::mat4(1.0f);
-		model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));
-		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-		projection = glm::perspective(glm::radians(45.0f), 1920.0f / 1080.0f, 0.1f, 100.0f);*/
+		{
+			// DRAW FIRST QUAD
+			glm::mat4 model = glm::mat4(1.0f);
+			model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.0f));
+			glm::mat4 view = glm::mat4(1.0f);
+			view = glm::translate(view, glm::vec3(0.0f, 0.6f, 0.0f));
 
-		/*shader.setMat4("model", model);
-		shader.setMat4("view", view);
-		shader.setMat4("projection", projection);*/
+			shader.use();
+			shader.setMat4("model", model);
+			shader.setMat4("view", view);
 
-		glm::mat4 model = glm::mat4(1.0f);
-		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.0f));
-		glm::mat4 view = glm::mat4(1.0f);
-		view = glm::translate(view, glm::vec3(0.0f, 0.6f, 0.0f));
+			shader.setFloat("u_Color", redChannel);
 
-		shader.setMat4("model", model); 
-		shader.setMat4("view", view);
+			renderer.draw(shader, VAO, IBO);
+		}
 
-		shader.setFloat("u_Color", redChannel);
+		{
+			// DRAW SECOND QUAD
+			glm::mat4 model = glm::mat4(1.0f);
+			model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.0f));
+			glm::mat4 view = glm::mat4(1.0f);
+			view = glm::translate(view, glm::vec3(0.0f, -0.6f, 0.0f));
 
-		renderer.draw(shader, VAO, IBO);
-		
+			shader.use();
+			shader.setMat4("model", model);
+			shader.setMat4("view", view);
+
+			shader.setFloat("u_Color", redChannel);
+
+			renderer.draw(shader, VAO, IBO);
+
+		}
 		glfwSwapBuffers(window);
 
 		glfwPollEvents();
