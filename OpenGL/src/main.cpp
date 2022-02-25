@@ -24,10 +24,6 @@ int main(void)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	#ifdef __APPLE__
-		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	#endif
-
 	GLFWwindow* window = glfwCreateWindow(1920, 1080, "SEEN OpenGL", NULL, NULL);
 	if (!window)
 	{
@@ -36,13 +32,11 @@ int main(void)
 		return -1;
 	}
 
-	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 	glfwSwapInterval(1);
 
-	// glad: load all OpenGL function pointers
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
 		std::cerr << "Failed to initialize GLAD" << std::endl;
@@ -70,7 +64,6 @@ int main(void)
 
 	VAO.SetVertexBuffer(VBO, 2);
 	VAO.Unbind();
-
 
 	float redChannel = 1.0f;
 
