@@ -12,6 +12,7 @@ private:
 
 public:
 
-	void draw(const Shader& shader, const VertexArray& vao, const IndexBuffer& ibo) const;
+	void Draw(const Shader& shader, const VertexArray& vao, const IndexBuffer& ibo) const;
+	void Clear() const;
 };
 

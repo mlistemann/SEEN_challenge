@@ -35,7 +35,7 @@ int main(void)
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
-	glfwSwapInterval(1);
+	glfwSwapInterval(2);
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
@@ -67,10 +67,15 @@ int main(void)
 
 	Renderer renderer;
 
+	float xTranslate = 0.0f;
+	float increment = 0.05f;
+
 	// RENDER LOOP
 	while (!glfwWindowShouldClose(window))
 	{
 		processInput(window);
+
+		renderer.Clear();
 		
 
 		{
@@ -78,7 +83,7 @@ int main(void)
 			glm::mat4 model = glm::mat4(1.0f);
 			model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.0f));
 			glm::mat4 view = glm::mat4(1.0f);
-			view = glm::translate(view, glm::vec3(0.0f, 0.6f, 0.0f));
+			view = glm::translate(view, glm::vec3(xTranslate, 0.6f, 0.0f));
 
 			shader.use();
 			shader.setMat4("model", model);
@@ -86,7 +91,7 @@ int main(void)
 
 			shader.setVec3("u_Color", glm::vec3(0.0, 0.0, 1.0));
 
-			renderer.draw(shader, VAO, IBO);
+			renderer.Draw(shader, VAO, IBO);
 		}
 
 		{
@@ -94,7 +99,7 @@ int main(void)
 			glm::mat4 model = glm::mat4(1.0f);
 			model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.0f));
 			glm::mat4 view = glm::mat4(1.0f);
-			view = glm::translate(view, glm::vec3(0.0f, -0.6f, 0.0f));
+			view = glm::translate(view, glm::vec3(-xTranslate, -0.6f, 0.0f));
 
 			shader.use();
 			shader.setMat4("model", model);
@@ -102,11 +107,18 @@ int main(void)
 
 			shader.setVec3("u_Color", glm::vec3(1.0, 0.0, 0.0));
 
-			renderer.draw(shader, VAO, IBO);
+			renderer.Draw(shader, VAO, IBO);
 
 		}
-		glfwSwapBuffers(window);
 
+		if (xTranslate > 1.0f)
+			increment -= 0.05f;
+		else if (xTranslate < -1.0f)
+			increment += 0.05f;
+
+		xTranslate += increment;
+
+		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
 		
