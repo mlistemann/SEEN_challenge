@@ -88,8 +88,12 @@ int main(void)
 		shader.setMat4("view", view);
 		shader.setMat4("projection", projection);*/
 
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.0f));
 		glm::mat4 view = glm::mat4(1.0f);
-		view = glm::translate(view, glm::vec3(0.0f, 0.4f, 0.0f));
+		view = glm::translate(view, glm::vec3(0.0f, 0.6f, 0.0f));
+
+		shader.setMat4("model", model); 
 		shader.setMat4("view", view);
 
 		shader.setFloat("u_Color", redChannel);
