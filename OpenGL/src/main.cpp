@@ -45,7 +45,7 @@ int main(void)
 	float xTranslate = 0.0f;
 	float increment = 0.05f;
 
-	float aspectRatio = 1920.f / 1080.f;
+	float aspectRatio = (float)window.GetWidth() / (float)window.GetHeight();
 	// RENDER LOOP
 	while (!window.ShouldClose())
 	{

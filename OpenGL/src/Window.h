@@ -23,6 +23,9 @@ public:
 	void Update() const;
 	void ProcessInput() const;
 
+	inline size_t GetWidth() const { return m_width; }
+	inline size_t GetHeight() const { return m_height; }
+
 	~Window();
 };
 
