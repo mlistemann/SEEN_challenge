@@ -7,41 +7,16 @@
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "Renderer.h"
+#include "Window.h"
 
 #include <iostream>
 #include <array>
 #include <vector>
 #include <string>
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void processInput(GLFWwindow *window);
-
 int main(void)
 {
-	if (!glfwInit())
-		return -1;
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-	GLFWwindow* window = glfwCreateWindow(1920, 1080, "SEEN OpenGL", NULL, NULL);
-	if (!window)
-	{
-		std::cerr << "Failed to create GLFW window" << std::endl;
-		glfwTerminate();
-		return -1;
-	}
-
-	glfwMakeContextCurrent(window);
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-
-	glfwSwapInterval(2);
-
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		std::cerr << "Failed to initialize GLAD" << std::endl;
-		return -1;
-	}
+	Window window(1920, 1080, "Seen OpenGL");
 
 	Shader shader("res/shaders/shader.vert", "res/shaders/shader.frag");
 
@@ -70,11 +45,11 @@ int main(void)
 	float xTranslate = 0.0f;
 	float increment = 0.05f;
 
-	float aspectRatio = 1920.f / 1080.f;
+	float aspectRatio = (float)window.GetWidth() / (float)window.GetHeight();
 	// RENDER LOOP
-	while (!glfwWindowShouldClose(window))
+	while (!window.ShouldClose())
 	{
-		processInput(window);
+		window.ProcessInput();
 
 		renderer.Clear();		
 
@@ -124,21 +99,8 @@ int main(void)
 
 		xTranslate += increment;
 
-		glfwSwapBuffers(window);
-		glfwPollEvents();
+		window.Update();
 	}
-		
-	glfwTerminate();
+
 	return 0;
-}
-
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-	glViewport(0, 0, width, height);
-}
-
-void processInput(GLFWwindow *window)
-{
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, true);
 }
