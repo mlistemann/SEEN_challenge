@@ -24,6 +24,7 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/OpenGL/src/Shader.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/OpenGL/src/VertexArray.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/OpenGL/src/VertexBuffer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/OpenGL/src/Window.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/OpenGL/src/main.cpp
 )
 set(HEADERS
@@ -32,6 +33,7 @@ set(HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/OpenGL/src/Shader.h
     ${CMAKE_CURRENT_SOURCE_DIR}/OpenGL/src/VertexArray.h
     ${CMAKE_CURRENT_SOURCE_DIR}/OpenGL/src/VertexBuffer.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/OpenGL/src/Window.h
 )
 
 # Collect glm headers (only needed for display in VS solution explorer)
