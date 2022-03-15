@@ -1,8 +1,18 @@
-# SEEN_challenge
+# OpenGL Playground
 
 ## Build Instructions
-Make sure to build on Windows for x64, since `deps/lib/glfw3.lib` has been built for x64 platforms as well.
-
 ```
 $ git clone --recursive https://github.com/mlistemann/SEEN_challenge.git
 ```
+### Windows
+1. Open CMake GUI
+2. Navigate to project root
+3. Configure
+4. Optional: Adjust options (such as disabling GLFW INSTALL targets) and Configure again
+5. Generate
+6. Open `OpenGL.sln` in Visual Studio
+7. Build
+
+### Linux
+1. `cmake ..`
+2. `make`
