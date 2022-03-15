@@ -43,7 +43,7 @@ int main(void)
 		return -1;
 	}
 
-	Shader shader("res/shaders/shader.vert", "res/shaders/shader.frag");
+	Shader shader("../OpenGL/res/shaders/shader.vert", "../OpenGL/res/shaders/shader.frag");
 
 	// DATA
 	std::array<float, 8> quad = {
