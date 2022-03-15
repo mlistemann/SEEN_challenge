@@ -18,7 +18,7 @@ int main(void)
 {
 	Window window(1920, 1080, "Seen OpenGL");
 
-	Shader shader("res/shaders/shader.vert", "res/shaders/shader.frag");
+	Shader shader("../OpenGL/res/shaders/shader.vert", "../OpenGL/res/shaders/shader.frag");
 
 	// DATA
 	std::array<float, 8> quad = {
